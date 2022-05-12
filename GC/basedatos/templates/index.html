@@ -72,6 +72,12 @@
             ></a>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
+              <h5>Area</h5>
+              <input
+                type="text"
+                name="Area"
+                style="width: 100%; margin-bottom: 20px"
+              />
               <h5>Mensaje</h5>
               <input type="text" name="Nombre" style="width: 100%" />
               <input type="file" name="Archivo" style="margin-top: 20px" />
@@ -88,21 +94,29 @@
             <form action="">
               <h5 style="margin-top: 50px">Archivo a buscar</h5>
               <input type="text" name="NombreBusqueda" style="width: 100%" />
-              <button class="btn btn-primary" type="submit" style="padding: 7px 12px; margin-left: 40%; margin-top: 20px">Buscar</button>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="padding: 7px 12px; margin-left: 40%; margin-top: 20px"
+              >
+                Buscar
+              </button>
             </form>
-            <br>
+            <br />
             {% if searchTerm != None %}
-              <p>Buscando {{ searchTerm }}</p>
-            {% endif %}
-
-            {% for mensaje in mensajes %}
-              <p name="Consulta">
-                {%if mensaje.nombre == searchTerm and mensaje.nombre%}
-                  <strong>{{mensaje.nombre}}:&nbsp&nbsp</strong>
-                {% endif %}
-                {%if mensaje.nombre == searchTerm and mensaje.archivo%}
-                <a href="{{mensaje.archivo}}" download target="_blank" rel="noopener">{{mensaje.archivo}}</a>
-                {% endif %}
+            <p>Buscando {{ searchTerm }}</p>
+            {% endif %} {% for mensaje in mensajes %}
+            <p name="Consulta">
+              {%if mensaje.nombre == searchTerm and mensaje.nombre%}
+              <strong>{{mensaje.nombre}}:&nbsp&nbsp</strong>
+              {% endif %}
+              <a
+                href="{{mensaje.archivo}}"
+                download
+                target="_blank"
+                rel="noopener"
+                >{{mensaje.archivo}}</a
+              >
             </p>
             {% endfor %}
           </div>

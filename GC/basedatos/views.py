@@ -15,9 +15,10 @@ def index(request):
     mensajes = 'Buscar'
      
   if request.method == 'POST':
+    area = request.POST['Area']
     nombre = request.POST['Nombre']
     archivo = request.FILES['Archivo']
-    agregar = models.Archivo(nombre=nombre, archivo= archivo)
+    agregar = models.Archivo(area=area, nombre=nombre, archivo= archivo)
     agregar.save()
     return render(request,'salto.html')
     
